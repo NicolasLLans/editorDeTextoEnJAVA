@@ -1,6 +1,7 @@
 package lanselota.nicolas.editor;
 
 import javax.swing.*;
+import java.awt.event.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -76,7 +77,6 @@ class Panel extends JPanel {
         tPane = new JTabbedPane();
 //**************************************
 
-        creaPanel();
 
         add(panelMenu);
         add(tPane);
@@ -87,6 +87,21 @@ class Panel extends JPanel {
 
         if (menu.equals("archivo")) {
             archivo.add(elementoItem);
+            if(accion.equals("nuevo")){
+                elementoItem.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        creaPanel();
+                    }
+                });
+            } else if (accion.equals("abrir")) {
+                elementoItem.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+
+                    }
+                });
+            }
         } else if (menu.equals("editar")) {
             editar.add(elementoItem);
         } else if (menu.equals("seleccion")) {
