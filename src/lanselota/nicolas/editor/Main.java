@@ -62,7 +62,7 @@ class Panel extends JPanel {
 //*****************************************************
 
 //********Elementos del menu Seleccionar***********************
-        creaItem("Seleccionar Todo", "seleccion", "");
+        creaItem("Seleccionar Todo", "seleccion", "seleccionarTodo");
         //***************************************
 
 //***********************Elementos del menu Ver**********
@@ -295,6 +295,12 @@ class Panel extends JPanel {
         }
         else if (menu.equals("seleccion")) {
             seleccion.add(elementoItem);
+            elementoItem.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    listAreaTexto.get(tPane.getSelectedIndex()).selectAll();
+                }
+            });
         }
         else if (menu.equals("ver")) {
             ver.add(elementoItem);
