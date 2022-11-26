@@ -1,6 +1,7 @@
 package lanselota.nicolas.editor;
 
 import javax.swing.*;
+import javax.swing.text.DefaultEditorKit;
 import javax.swing.undo.UndoManager;
 import java.awt.event.*;
 import java.io.*;
@@ -283,31 +284,13 @@ class Panel extends JPanel {
                 
             }
             else if (accion.equals("cortar")) {
-                elementoItem.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-
-                    }
-                });
-                
+                elementoItem.addActionListener(new DefaultEditorKit.CutAction());
             }
             else if (accion.equals("copiar")) {
-                elementoItem.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-
-                    }
-                });
-                
+                elementoItem.addActionListener(new DefaultEditorKit.CopyAction());
             }
-            else if (accion.equals("Pegar")){
-                elementoItem.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-
-                    }
-                });
-
+            else if (accion.equals("pegar")){
+                elementoItem.addActionListener(new DefaultEditorKit.PasteAction());
             }
         }
         else if (menu.equals("seleccion")) {
