@@ -1,6 +1,7 @@
 package lanselota.nicolas.editor;
 
 import javax.swing.*;
+import javax.swing.undo.UndoManager;
 import java.awt.event.*;
 import java.io.*;
 import java.util.ArrayList;
@@ -51,12 +52,12 @@ class Panel extends JPanel {
 //****************************************************
 
 //************Elementos del menu editar**************
-        creaItem("Deshacer", "editar", "");
-        creaItem("Rehacer", "editar", "");
+        creaItem("Deshacer", "editar", "deshacer");
+        creaItem("Rehacer", "editar", "rehacer");
         editar.addSeparator();
-        creaItem("Cortar", "editar", "");
-        creaItem("Copiar", "editar", "");
-        creaItem("Pegar", "editar", "");
+        creaItem("Cortar", "editar", "cortar");
+        creaItem("Copiar", "editar", "copiar");
+        creaItem("Pegar", "editar", "pegar");
 //*****************************************************
 
 //********Elementos del menu Seleccionar***********************
@@ -81,6 +82,7 @@ class Panel extends JPanel {
         listFile = new ArrayList<File>();
         listAreaTexto = new ArrayList<JTextArea>();
         listScroll = new ArrayList<JScrollPane>();
+        listManager = new ArrayList<>();
 
 //**************************************
 
@@ -259,6 +261,48 @@ class Panel extends JPanel {
         }
         else if (menu.equals("editar")) {
             editar.add(elementoItem);
+            if(accion.equals("deshacer")){
+                elementoItem.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if(listManager.get(tPane.getSelectedIndex()).canUndo()){
+                            listManager.get(tPane.getSelectedIndex()).undo();
+                        }
+                    }
+                });
+            }else if (accion.equals("rehacer")){
+                elementoItem.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                }
+            });
+                
+            } else if (accion.equals("cortar")) {
+                elementoItem.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+
+                    }
+                });
+                
+            } else if (accion.equals("copiar")) {
+                elementoItem.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+
+                    }
+                });
+                
+            }else if (accion.equals("Pegar")){
+                elementoItem.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+
+                    }
+                });
+
+            }
         }
         else if (menu.equals("seleccion")) {
             seleccion.add(elementoItem);
@@ -276,6 +320,8 @@ class Panel extends JPanel {
         listFile.add(new File(""));
         listAreaTexto.add(new JTextArea());
         listScroll.add(new JScrollPane(listAreaTexto.get(contadorPanel)));
+        listManager.add(new UndoManager());//nos sirve para rastrear los cambios del area de texto
+        listAreaTexto.get(contadorPanel).getDocument().addUndoableEditListener(listManager.get(contadorPanel));
 
         ventana.add(listScroll.get(contadorPanel));
 
@@ -296,6 +342,7 @@ class Panel extends JPanel {
     private ArrayList<JTextArea> listAreaTexto;
     private ArrayList<File>listFile;
     private ArrayList<JScrollPane> listScroll;
+    private ArrayList<UndoManager> listManager;
     private JMenuBar menu;
     private JMenu archivo, editar, seleccion, ver, apariencia;
     private JMenuItem elementoItem;
