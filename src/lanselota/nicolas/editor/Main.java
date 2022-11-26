@@ -270,15 +270,19 @@ class Panel extends JPanel {
                         }
                     }
                 });
-            }else if (accion.equals("rehacer")){
+            }
+            else if (accion.equals("rehacer")){
                 elementoItem.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-
+                    if (listManager.get(tPane.getSelectedIndex()).canRedo()){
+                        listManager.get(tPane.getSelectedIndex()).redo();
+                    }
                 }
             });
                 
-            } else if (accion.equals("cortar")) {
+            }
+            else if (accion.equals("cortar")) {
                 elementoItem.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -286,7 +290,8 @@ class Panel extends JPanel {
                     }
                 });
                 
-            } else if (accion.equals("copiar")) {
+            }
+            else if (accion.equals("copiar")) {
                 elementoItem.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -294,7 +299,8 @@ class Panel extends JPanel {
                     }
                 });
                 
-            }else if (accion.equals("Pegar")){
+            }
+            else if (accion.equals("Pegar")){
                 elementoItem.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
