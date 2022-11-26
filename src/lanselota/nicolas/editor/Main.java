@@ -66,7 +66,7 @@ class Panel extends JPanel {
         //***************************************
 
 //***********************Elementos del menu Ver**********
-        creaItem("Numeración", "ver", "");
+        creaItem("Numeración", "ver", "numeración");
         ver.add(apariencia);
         creaItem("Normal", "apariencia", "");
         creaItem("Dark", "apariencia", "");
@@ -295,15 +295,27 @@ class Panel extends JPanel {
         }
         else if (menu.equals("seleccion")) {
             seleccion.add(elementoItem);
-            elementoItem.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    listAreaTexto.get(tPane.getSelectedIndex()).selectAll();
-                }
-            });
+            if (accion.equals("seleccionarTodo")) {
+                elementoItem.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        listAreaTexto.get(tPane.getSelectedIndex()).selectAll();
+                    }
+                });
+            }
         }
         else if (menu.equals("ver")) {
             ver.add(elementoItem);
+            if (accion.equals("numeración")){
+                elementoItem.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        numeracion = !numeracion;
+                        Utilidades.viewNumeracion(contadorPanel,numeracion,listAreaTexto,listScroll );
+
+                    }
+                });
+            }
         }
         else if (menu.equals("apariencia")) {
             apariencia.add(elementoItem);
@@ -321,11 +333,12 @@ class Panel extends JPanel {
         ventana.add(listScroll.get(contadorPanel));
 
         tPane.addTab("title", ventana);
+        Utilidades.viewNumeracionInicio(numeracion, listAreaTexto.get(contadorPanel) ,listScroll.get(contadorPanel));
         tPane.setSelectedIndex(contadorPanel);
         contadorPanel++;
         existePanel=true;
     }
-
+    private boolean numeracion = false;
     private int contadorPanel = 0; //Nos va contar cuantos paneles se han creado
     private boolean existePanel = false; //nos dice si inicialmente existe un panel creado.
 
