@@ -3,6 +3,7 @@ package lanselota.nicolas.editor;
 import javax.swing.*;
 import javax.swing.text.*;
 import java.awt.*;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class Utilidades {
@@ -74,4 +75,13 @@ public class Utilidades {
         }
     }
     //----------------------------
+    //------------------button--------------------
+    public static JButton addButton(URL url, Object objContenedor, String rotulo){
+            JButton button = new JButton(new ImageIcon(new ImageIcon(url).getImage().getScaledInstance(20,20,Image.SCALE_SMOOTH)));
+            button.setToolTipText(rotulo);
+            ((Container)objContenedor).add(button);
+            return button;
+    }
+
+    //----------------------------------------------
 }

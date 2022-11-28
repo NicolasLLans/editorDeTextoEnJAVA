@@ -5,6 +5,8 @@ import javax.swing.text.DefaultEditorKit;
 import javax.swing.undo.UndoManager;
 import java.awt.event.*;
 import java.io.*;
+import java.net.URL;
+import java.security.Principal;
 import java.util.ArrayList;
 
 public class Main {
@@ -86,10 +88,27 @@ class Panel extends JPanel {
         listManager = new ArrayList<>();
 
 //**************************************
+        /////-----------Barra de herramientas-----------
+
+        herramientas = new JToolBar(JToolBar.VERTICAL);
+        url = Main.class.getResource("/lanselota/nicolas/img/circle-xmark-solid.png");
+        Utilidades.addButton(url,herramientas,"Cerrar pestaña actual").addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int seleccion = tPane.getSelectedIndex();
+                if (seleccion!= -1){
+                    //si existen pestañas abiertas eliminamos la pestaña que tenemos seleccionadas
+
+                }
+            }
+        });
+
+        //-------------------------------------------------
 
 
         add(panelMenu);
         add(tPane);
+        add(herramientas);
     }
 
     public void creaItem(String rotulo, String menu, String accion) {
@@ -370,9 +389,7 @@ class Panel extends JPanel {
     private int contadorPanel = 0; //Nos va contar cuantos paneles se han creado
     private boolean existePanel = false; //nos dice si inicialmente existe un panel creado.
 
-
     //elementos visuales
-
     private String tipoFondo = "d";
     private JTabbedPane tPane;
     private JPanel ventana;
@@ -384,5 +401,7 @@ class Panel extends JPanel {
     private JMenuBar menu;
     private JMenu archivo, editar, seleccion, ver, apariencia;
     private JMenuItem elementoItem;
+    private JToolBar herramientas;
+    private URL url;
 }
 

@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a0f87dfa-37aa-4e63-9843-15e880dc9ca4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/lanselota/nicolas/img/circle-plus-solid.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lanselota/nicolas/img/circle-xmark-solid.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EditorDeTexto.iml" beforeDir="false" afterPath="$PROJECT_DIR$/EditorDeTexto.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lanselota/nicolas/editor/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lanselota/nicolas/editor/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lanselota/nicolas/editor/Utilidades.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lanselota/nicolas/editor/Utilidades.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,13 +35,22 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true"
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "C:/Users/nicol/dev/openBootCamp/java/EditorDeTexto/src/lanselota/nicolas/img"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\nicol\dev\openBootCamp\java\EditorDeTexto\src\lanselota\nicolas\img" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\nicol\dev\openBootCamp\java\EditorDeTexto\src\lanselota\nicolas\img" />
       <recent name="C:\Users\nicol\dev\openBootCamp\java\EditorDeTexto\src\lanselota\nicolas\editor" />
     </key>
   </component>
