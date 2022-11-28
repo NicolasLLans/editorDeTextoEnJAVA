@@ -68,8 +68,8 @@ class Panel extends JPanel {
 //***********************Elementos del menu Ver**********
         creaItem("Numeración", "ver", "numeración");
         ver.add(apariencia);
-        creaItem("Normal", "apariencia", "");
-        creaItem("Dark", "apariencia", "");
+        creaItem("Normal", "apariencia", "normal");
+        creaItem("Dark", "apariencia", "dark");
 //*********************************
 
 
@@ -81,7 +81,7 @@ class Panel extends JPanel {
         tPane = new JTabbedPane();
 
         listFile = new ArrayList<File>();
-        listAreaTexto = new ArrayList<JTextArea>();
+        listAreaTexto = new ArrayList<JTextPane>();
         listScroll = new ArrayList<JScrollPane>();
         listManager = new ArrayList<>();
 
@@ -319,13 +319,38 @@ class Panel extends JPanel {
         }
         else if (menu.equals("apariencia")) {
             apariencia.add(elementoItem);
+
+            if (accion.equals("normal")){
+                elementoItem.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        tipoFondo="w";
+
+                        if (tPane.getTabCount() > 0){
+                            Utilidades.aFondo(contadorPanel,tipoFondo,listAreaTexto);
+                        }
+                    }
+                });
+            }
+            else if (accion.equals("dark")) {
+                elementoItem.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        tipoFondo="d";
+
+                        if (tPane.getTabCount()>0){
+                            Utilidades.aFondo(contadorPanel,tipoFondo,listAreaTexto);
+                        }
+                    }
+                });
+            }
         }
     }
 
     public void creaPanel() {
         ventana = new JPanel();
         listFile.add(new File(""));
-        listAreaTexto.add(new JTextArea());
+        listAreaTexto.add(new JTextPane());
         listScroll.add(new JScrollPane(listAreaTexto.get(contadorPanel)));
         listManager.add(new UndoManager());//nos sirve para rastrear los cambios del area de texto
         listAreaTexto.get(contadorPanel).getDocument().addUndoableEditListener(listManager.get(contadorPanel));
@@ -333,9 +358,11 @@ class Panel extends JPanel {
         ventana.add(listScroll.get(contadorPanel));
 
         tPane.addTab("title", ventana);
+
         Utilidades.viewNumeracionInicio(numeracion, listAreaTexto.get(contadorPanel) ,listScroll.get(contadorPanel));
         tPane.setSelectedIndex(contadorPanel);
         contadorPanel++;
+        Utilidades.aFondo(contadorPanel,tipoFondo,listAreaTexto);
         existePanel=true;
     }
     private boolean numeracion = false;
@@ -344,10 +371,12 @@ class Panel extends JPanel {
 
 
     //elementos visuales
+
+    private String tipoFondo = "d";
     private JTabbedPane tPane;
     private JPanel ventana;
     //private JTextArea areaTexto;
-    private ArrayList<JTextArea> listAreaTexto;
+    private ArrayList<JTextPane> listAreaTexto;
     private ArrayList<File>listFile;
     private ArrayList<JScrollPane> listScroll;
     private ArrayList<UndoManager> listManager;
