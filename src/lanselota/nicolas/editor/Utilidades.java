@@ -42,10 +42,12 @@ public class Utilidades {
     public static void aFondo(int contador, String tipo, ArrayList<JTextPane> list){
         if (tipo.equals("w")){
             for (int i = 0; i < contador;i++){
+
+                list.get(i).selectAll();
                 StyleContext sc = StyleContext.getDefaultStyleContext();
 
                 //para el color del texto-----------------------------
-                AttributeSet aset = sc.addAttribute(SimpleAttributeSet.EMPTY,StyleConstants.Foreground, new Color (255,255,255));
+                AttributeSet aset = sc.addAttribute(SimpleAttributeSet.EMPTY,StyleConstants.Foreground, Color.BLACK);
 
                 //Para el tipo de texto -------------------------------
                 aset= sc.addAttribute(aset,StyleConstants.FontFamily,"Arial");
@@ -55,6 +57,9 @@ public class Utilidades {
             }
         } else if (tipo.equals("d")) {
             for (int i = 0; i < contador;i++){
+
+                list.get(i).selectAll();
+
                 StyleContext sc = StyleContext.getDefaultStyleContext();
 
                 //para el color del texto-----------------------------
