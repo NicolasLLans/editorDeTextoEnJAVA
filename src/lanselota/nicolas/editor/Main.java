@@ -141,6 +141,7 @@ class Panel extends JPanel {
                                         if (linea != null)
                                             Utilidades.append(linea + "\n", listAreaTexto.get(tPane.getSelectedIndex()));
                                     }
+                                    Utilidades.aFondo(contadorPanel,tipoFondo,listAreaTexto);
 
                                 } catch (IOException e1) {
                                     e1.printStackTrace();
