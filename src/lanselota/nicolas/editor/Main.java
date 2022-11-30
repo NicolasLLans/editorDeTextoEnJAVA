@@ -98,6 +98,17 @@ class Panel extends JPanel {
                 int seleccion = tPane.getSelectedIndex();
                 if (seleccion!= -1){
                     //si existen pestañas abiertas eliminamos la pestaña que tenemos seleccionadas
+                    listFile.remove(seleccion);
+                    listAreaTexto.remove(seleccion);
+                    listScroll.get(tPane.getSelectedIndex()).setRowHeaderView(null);
+                    tPane.remove(seleccion);
+                    listManager.remove(seleccion);
+
+                    contadorPanel--;
+                    if (tPane.getSelectedIndex() == -1){
+                        existePanel = false;//Si tPane retorna -1 no existe paneles
+                    }
+
 
                 }
             }
