@@ -114,6 +114,14 @@ class Panel extends JPanel {
             }
         });
 
+        url=Main.class.getResource("/lanselota/nicolas/img/circle-plus-solid.png");
+        Utilidades.addButton(url,herramientas,"Nuevo Archivo").addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                creaPanel();
+            }
+        });
+
         //-------------------------------------------------
 
 
