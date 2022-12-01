@@ -3,6 +3,7 @@ package lanselota.nicolas.editor;
 import javax.swing.*;
 import javax.swing.text.DefaultEditorKit;
 import javax.swing.undo.UndoManager;
+import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.net.URL;
@@ -30,9 +31,14 @@ class Marco extends JFrame {
 
 class Panel extends JPanel {
     public Panel() {
+        setLayout(new BorderLayout());
+
+
+
+
         //Menu************
         JPanel panelMenu = new JPanel();
-
+        panelMenu.setLayout(new BorderLayout());
         menu = new JMenuBar();
         archivo = new JMenu("Archivo");
         editar = new JMenu("Editar");
@@ -75,7 +81,7 @@ class Panel extends JPanel {
 //*********************************
 
 
-        panelMenu.add(menu);
+        panelMenu.add(menu, BorderLayout.NORTH);
         //************************
 
 
@@ -125,9 +131,9 @@ class Panel extends JPanel {
         //-------------------------------------------------
 
 
-        add(panelMenu);
-        add(tPane);
-        add(herramientas);
+        add(panelMenu, BorderLayout.NORTH);
+        add(tPane, BorderLayout.CENTER);
+        add(herramientas, BorderLayout.WEST);
     }
 
     public void creaItem(String rotulo, String menu, String accion) {
@@ -388,13 +394,14 @@ class Panel extends JPanel {
 
     public void creaPanel() {
         ventana = new JPanel();
+        ventana.setLayout(new BorderLayout());
         listFile.add(new File(""));
         listAreaTexto.add(new JTextPane());
         listScroll.add(new JScrollPane(listAreaTexto.get(contadorPanel)));
         listManager.add(new UndoManager());//nos sirve para rastrear los cambios del area de texto
         listAreaTexto.get(contadorPanel).getDocument().addUndoableEditListener(listManager.get(contadorPanel));
 
-        ventana.add(listScroll.get(contadorPanel));
+        ventana.add(listScroll.get(contadorPanel), BorderLayout.CENTER);
 
         tPane.addTab("title", ventana);
 
@@ -423,4 +430,3 @@ class Panel extends JPanel {
     private JToolBar herramientas;
     private URL url;
 }
-
