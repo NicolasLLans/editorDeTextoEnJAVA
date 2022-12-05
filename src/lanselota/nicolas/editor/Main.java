@@ -25,12 +25,12 @@ class Marco extends JFrame {
         setTitle("Editor de texto creado por Nico");
 
 
-        add(new Panel());
+        add(new Panel(this));
     }
 }
 
 class Panel extends JPanel {
-    public Panel() {
+    public Panel(JFrame marco) {
         setLayout(new BorderLayout());
 
 
@@ -134,6 +134,37 @@ class Panel extends JPanel {
         panelExtra.setLayout(new BorderLayout());
 
         JPanel panelIzquierdo = new JPanel();
+        labelAlfiler = new JLabel();
+        url= Main.class.getResource("/lanselota/nicolas/img/thumbtack-solid.png");
+        labelAlfiler.setIcon(new ImageIcon(new ImageIcon(url).getImage().getScaledInstance(20,30,Image.SCALE_SMOOTH)));
+        labelAlfiler.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                estadoAlfiler = !estadoAlfiler;
+                marco.setAlwaysOnTop(estadoAlfiler);
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                url = Main.class.getResource("/lanselota/nicolas/img/thumbtack-solid.png");
+                labelAlfiler.setIcon(new ImageIcon(new ImageIcon(url).getImage().getScaledInstance(20,30, Image.SCALE_SMOOTH)));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                if (estadoAlfiler){
+                    url = Main.class.getResource("/lanselota/nicolas/img/thumbtack-solid.png");
+                    labelAlfiler.setIcon(new ImageIcon(new ImageIcon(url).getImage().getScaledInstance(15,20, Image.SCALE_SMOOTH)));
+                }else{
+                    url = Main.class.getResource("/lanselota/nicolas/img/thumbtack-solid.png");
+                    labelAlfiler.setIcon(new ImageIcon(new ImageIcon(url).getImage().getScaledInstance(20,30, Image.SCALE_SMOOTH)));
+                }
+            }
+        });
+        panelIzquierdo.add(labelAlfiler);
         JPanel panelCentro = new JPanel();
         panelExtra.add(panelIzquierdo, BorderLayout.WEST);
         panelExtra.add(panelCentro, BorderLayout.CENTER);
@@ -440,4 +471,8 @@ class Panel extends JPanel {
     private JMenuItem elementoItem;
     private JToolBar herramientas;
     private URL url;
+
+    private boolean estadoAlfiler = false;
+    private JLabel labelAlfiler;
+
 }
