@@ -1,6 +1,8 @@
 package lanselota.nicolas.editor;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.text.DefaultEditorKit;
 import javax.swing.undo.UndoManager;
 import java.awt.*;
@@ -166,6 +168,22 @@ class Panel extends JPanel {
         });
         panelIzquierdo.add(labelAlfiler);
         JPanel panelCentro = new JPanel();
+        slider = new JSlider( 8,38,14);
+        slider.setMajorTickSpacing(12);// La separación va a ser de 12 en 12
+        slider.setMinorTickSpacing(2);//barras chicas de 2 en 2.
+
+        slider.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                Utilidades.tamTexto(slider.getValue(),contadorPanel,listAreaTexto);
+            }
+        });
+
+
+        slider.setPaintTicks(true);
+        slider.setPaintLabels(true);
+        panelCentro.add(slider);
+
         panelExtra.add(panelIzquierdo, BorderLayout.WEST);
         panelExtra.add(panelCentro, BorderLayout.CENTER);
         //-------------------------------------------------
@@ -226,7 +244,7 @@ class Panel extends JPanel {
                                         if (linea != null)
                                             Utilidades.append(linea + "\n", listAreaTexto.get(tPane.getSelectedIndex()));
                                     }
-                                    Utilidades.aFondo(contadorPanel,tipoFondo,listAreaTexto);
+                                    Utilidades.aFondo(contadorPanel,tipoFondo,slider.getValue(),listAreaTexto);
 
                                 } catch (IOException e1) {
                                     e1.printStackTrace();
@@ -413,7 +431,7 @@ class Panel extends JPanel {
                         tipoFondo="w";
 
                         if (tPane.getTabCount() > 0){
-                            Utilidades.aFondo(contadorPanel,tipoFondo,listAreaTexto);
+                            Utilidades.aFondo(contadorPanel,tipoFondo,slider.getValue(),listAreaTexto);
                         }
                     }
                 });
@@ -425,7 +443,7 @@ class Panel extends JPanel {
                         tipoFondo="d";
 
                         if (tPane.getTabCount()>0){
-                            Utilidades.aFondo(contadorPanel,tipoFondo,listAreaTexto);
+                            Utilidades.aFondo(contadorPanel,tipoFondo,slider.getValue(),listAreaTexto);
                         }
                     }
                 });
@@ -449,7 +467,7 @@ class Panel extends JPanel {
         Utilidades.viewNumeracionInicio(numeracion, listAreaTexto.get(contadorPanel) ,listScroll.get(contadorPanel));
         tPane.setSelectedIndex(contadorPanel);
         contadorPanel++;
-        Utilidades.aFondo(contadorPanel,tipoFondo,listAreaTexto);
+        Utilidades.aFondo(contadorPanel,tipoFondo,slider.getValue(),listAreaTexto);
         existePanel=true;
     }
     private boolean numeracion = false;
@@ -472,7 +490,9 @@ class Panel extends JPanel {
     private JToolBar herramientas;
     private URL url;
 
+
     private boolean estadoAlfiler = false;
     private JLabel labelAlfiler;
+    private JSlider slider;
 
 }

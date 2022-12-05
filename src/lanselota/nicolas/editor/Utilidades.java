@@ -40,7 +40,7 @@ public class Utilidades {
     }
 
     //--------------sección apariencia--------------
-    public static void aFondo(int contador, String tipo, ArrayList<JTextPane> list){
+    public static void aFondo(int contador, String tipo,int tamano, ArrayList<JTextPane> list){
         if (tipo.equals("w")){
             for (int i = 0; i < contador;i++){
 
@@ -52,6 +52,9 @@ public class Utilidades {
 
                 //Para el tipo de texto -------------------------------
                 aset= sc.addAttribute(aset,StyleConstants.FontFamily,"Arial");
+
+                //Para el tamaño del texto
+                aset = sc.addAttribute(aset,StyleConstants.FontSize, tamano);
 
                 list.get(i).setCharacterAttributes(aset, false);
                 list.get(i).setBackground(Color.WHITE);
@@ -69,6 +72,9 @@ public class Utilidades {
                 //Para el tipo de texto -------------------------------
                 aset= sc.addAttribute(aset,StyleConstants.FontFamily,"Arial");
 
+                //Para el tamaño del texto
+                aset = sc.addAttribute(aset,StyleConstants.FontSize, tamano);
+
                 list.get(i).setCharacterAttributes(aset, false);
                 list.get(i).setBackground(Color.DARK_GRAY);
             }
@@ -84,4 +90,20 @@ public class Utilidades {
     }
 
     //----------------------------------------------
+    //------------Tamaño de texto--------------
+    public static void tamTexto(int tamano,int contador,ArrayList<JTextPane> list){
+        for (int i=0; i<contador;i++){
+            //seleccionamos todo el texto
+            list.get(i).selectAll();
+
+            StyleContext sc = StyleContext.getDefaultStyleContext();
+            //Cambia el tamaño del texto
+            AttributeSet aset = sc.addAttribute(SimpleAttributeSet.EMPTY,StyleConstants.FontSize, tamano);
+
+            //cambia el tamaño del texto en el area de texto
+            list.get(i).setCharacterAttributes(aset,false);
+        }
+    }
+
+    //----------------------------------------
 }
