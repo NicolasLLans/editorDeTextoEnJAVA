@@ -188,6 +188,24 @@ class Panel extends JPanel {
         panelExtra.add(panelCentro, BorderLayout.CENTER);
         //-------------------------------------------------
 
+        //-----MENU EMERGENTE---------------
+        menuEmergente = new JPopupMenu();
+
+        JMenuItem cortar = new JMenuItem("Cortar");
+        JMenuItem copiar = new JMenuItem("Copiar");
+        JMenuItem pegar = new JMenuItem("Pegar");
+
+        cortar.addActionListener(new DefaultEditorKit.CutAction());
+        copiar.addActionListener(new DefaultEditorKit.CopyAction());
+        pegar.addActionListener(new DefaultEditorKit.PasteAction());
+
+        menuEmergente.add(cortar);
+        menuEmergente.add(copiar);
+        menuEmergente.add(pegar);
+
+
+        //-----------------------------------
+
 
         add(panelMenu, BorderLayout.NORTH);
         add(tPane, BorderLayout.CENTER);
@@ -460,6 +478,8 @@ class Panel extends JPanel {
         listManager.add(new UndoManager());//nos sirve para rastrear los cambios del area de texto
         listAreaTexto.get(contadorPanel).getDocument().addUndoableEditListener(listManager.get(contadorPanel));
 
+        listAreaTexto.get(contadorPanel).setComponentPopupMenu(menuEmergente);
+
         ventana.add(listScroll.get(contadorPanel), BorderLayout.CENTER);
 
         tPane.addTab("title", ventana);
@@ -494,5 +514,7 @@ class Panel extends JPanel {
     private boolean estadoAlfiler = false;
     private JLabel labelAlfiler;
     private JSlider slider;
+
+    private JPopupMenu menuEmergente;
 
 }
