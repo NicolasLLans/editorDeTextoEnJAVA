@@ -106,4 +106,17 @@ public class Utilidades {
     }
 
     //----------------------------------------
+    //--------metodos de bloqueo y desbloqueo items-----------------
+    public static void activaItems(JMenuItem j[]){
+        for (JMenuItem item : j) {
+            item.setEnabled(true);
+        }
+    }
+
+    public static void desactivaItems(JMenuItem j[]){
+        for (JMenuItem item : j) {
+            item.setEnabled(false);
+        }
+    }
+    //------------------------------------------------------------
 }
